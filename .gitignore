@@ -1,0 +1,31 @@
+# 📦 Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# 📂 Éditeur / IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 🔥 Fichiers système (Mac + Windows)
+.DS_Store
+Thumbs.db
+
+# 🏗️ Build & Déploiement
+dist/
+build/
+
+# 🚀 Live Server (VS Code)
+.live-server.json
+
+# 📊 Logs & Debug
+logs/
+*.log
+debug.log
+error.log
+coverage/
