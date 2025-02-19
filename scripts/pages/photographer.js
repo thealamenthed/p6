@@ -30,17 +30,17 @@ async function displayPhotographerData() {
   const photographerInfo = document.createElement("div");
   photographerInfo.classList.add("photographer-info");
 
-  const nameElement = document.createElement("h1");
+  const nameElement = document.createElement("h2");
   nameElement.textContent = photographer.name;
 
-  const locationElement = document.createElement("h2");
+  const locationElement = document.createElement("h3");
   locationElement.textContent = `${photographer.city}, ${photographer.country}`;
 
   const taglineElement = document.createElement("p");
   taglineElement.textContent = photographer.tagline;
 
   const priceElement = document.createElement("p");
-  priceElement.textContent = `${photographer.price}€ / jour`;
+  // priceElement.textContent = `${photographer.price}€ / jour`;
 
   const imgElement = document.createElement("img");
   imgElement.setAttribute("src", photographerModel.picture);
@@ -51,7 +51,7 @@ async function displayPhotographerData() {
   photographerInfo.appendChild(nameElement);
   photographerInfo.appendChild(locationElement);
   photographerInfo.appendChild(taglineElement);
-  photographerInfo.appendChild(priceElement);
+  // photographerInfo.appendChild(priceElement);
 
   photographHeader.prepend(imgElement);
   photographHeader.prepend(photographerInfo);
