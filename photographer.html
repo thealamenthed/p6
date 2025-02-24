@@ -11,7 +11,9 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="/index.html" alt="Fisheye Home page">
+        <img src="assets/images/logo.png" class="logo" />
+      </a>
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -35,6 +37,58 @@
         </form>
       </div>
     </div>
+
+    <div class="dropdown-section">
+      <label id="order-label" class="dropdown-label">Trier par</label>
+      <div class="dropdown">
+        <button
+          id="dropdown-btn"
+          class="dropdown-trigger"
+          role="button"
+          aria-labelledby="order-label"
+          aria-haspopup="listbox"
+          aria-expanded="false">
+          <span id="selected-option">Popularité</span>
+          <img
+            src="./assets/icons/dropdown.svg"
+            alt=""
+            class="dropdown-icon"
+            aria-hidden="true" />
+        </button>
+
+        <ul
+          id="dropdown-menu"
+          class="dropdown-list"
+          role="listbox"
+          aria-labelledby="order-label"
+          aria-activedescendant="">
+          <li
+            class="dropdown-item"
+            role="option"
+            data-value="popularité"
+            id="item-popularité">
+            Popularité
+          </li>
+          <li
+            class="dropdown-item"
+            role="option"
+            data-value="date"
+            id="item-date">
+            Date
+          </li>
+          <li
+            class="dropdown-item"
+            role="option"
+            data-value="titre"
+            id="item-titre">
+            Titre
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="photographer-all-medias-container"></div>
+
     <script type="module" src="/scripts/pages/photographer.js"></script>
     <script type="module" src="/scripts/utils/contactForm.js"></script>
   </body>

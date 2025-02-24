@@ -1,8 +1,31 @@
 @import url("photographer.css");
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+ul,
+ol {
+    list-style: none;
+}
+
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
+    line-height: 1.6;
 }
 
 
@@ -45,6 +68,22 @@ h1 {
 }
 
 .photographer_section article img {
-    height: 200px;
     width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+h3.photographer_section_city {
+    font-size: 13px;
+    color: #901C1C;
+}
+
+p.photographer_section_tagline {
+    font-size: 10px;
+}
+
+p.photographer_section_price {
+    font-size: 9px;
+    color: #757575;
 }
