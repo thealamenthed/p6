@@ -6,6 +6,24 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.photographer-info {
+    order: 1;
+
+
+}
+
+.contact_button {
+    order: 2;
+}
+
+.photographer-img {
+    order: 3;
 }
 
 .photographer-img {
@@ -14,6 +32,23 @@
     object-fit: cover;
     border-radius: 50%;
 }
+
+h2 {
+    color: #D3573C;
+    font-size: 64px;
+    font-weight: 400;
+}
+
+h3 {
+    font-size: 24px;
+    color: #901C1C;
+}
+
+p {
+    font-size: 18px;
+    color: #757575;
+}
+
 
 .contact_button {
     font-size: 20px;
@@ -80,4 +115,100 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+/****** Dropdown */
+
+.dropdown-section {
+    margin: 10px 100px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+/* Styles généraux */
+.dropdown {
+    position: relative;
+
+}
+
+/* Label */
+.dropdown-label {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* Bouton déclencheur */
+.dropdown-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 170px;
+    height: 69px;
+    padding: 8px 12px;
+    border: none;
+    background: #901C1C;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.dropdown-trigger[aria-expanded="true"] {
+    border-radius: 5px 5px 0 0;
+}
+
+
+/* Icône */
+.dropdown-icon {
+    margin-left: 8px;
+}
+
+/* Liste cachée par défaut */
+.dropdown-list {
+    position: absolute;
+    top: 100%;
+    /* Juste en dessous du bouton */
+    left: 0;
+    width: 100%;
+    border: none;
+    color: white;
+    font-size: 18px;
+    background: #901C1C;
+    display: none;
+    border-radius: 0 0 5px 5px;
+    overflow: hidden;
+}
+
+/* Options */
+.dropdown-item {
+    position: relative;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+/* Style pour l'élément actif dans le menu */
+.dropdown-item.active {
+    background-color: #8e3f3f;
+    /* Une couleur d'arrière-plan douce pour l'élément actif */
+    outline: 2px solid #0056b3;
+    /* Bordure bleue pour le focus */
+    outline-offset: -2px;
+    /* Décalage de la bordure */
+}
+
+/* Séparateur entre options */
+.dropdown-item::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    border-top: 0.1rem solid white;
+    width: 75%;
+    transform: translateX(-50%);
+    border-radius: 0
 }

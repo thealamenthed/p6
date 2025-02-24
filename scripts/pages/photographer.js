@@ -1,16 +1,17 @@
 import {photographerTemplate} from "../templates/photographer.js";
 import {getPhotographers} from "../utils/getPhotographers.js";
+import {setupDropdown} from "../utils/setupDropdown.js";
 
 // Fonction pour récupérer l'ID du photographe dans l'URL
 function getPhotographerId() {
   const params = new URLSearchParams(window.location.search);
-  return params.get("id"); // Récupère l'ID du photographe
+  return params.get("id");
 }
 
-// Fonction pour afficher les infos du photographe sur la page
+// Affiche les infos du photographe sur la page
 async function displayPhotographerData() {
   const {photographers} = await getPhotographers(); // Récupère les données
-  const photographerId = getPhotographerId(); // Récupère l'ID dans l'URL
+  const photographerId = getPhotographerId(); // Récupère l'ID ds l'URL
 
   // Trouve le photographe correspondant
   const photographer = photographers.find((p) => p.id == photographerId);
@@ -59,3 +60,5 @@ async function displayPhotographerData() {
 
 // Initialise la page
 displayPhotographerData();
+// Initialise le dropdown
+setupDropdown();
