@@ -1,12 +1,8 @@
-import {photographerTemplate} from "../templates/photographer.js";
-import {getPhotographers} from "../utils/getPhotographers.js";
+import {photographerTemplate} from "../templates/index.js";
+import {getPhotographers} from "../api/getPhotographers.js";
 import {setupDropdown} from "../utils/setupDropdown.js";
-
-// Fonction pour récupérer l'ID du photographe dans l'URL
-function getPhotographerId() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("id");
-}
+import {getPhotographerId} from "../utils/getPhotographerId.js";
+import {displayPhotographerMedias} from "../utils/displayPhotographerMedias.js";
 
 // Affiche les infos du photographe sur la page
 async function displayPhotographerData() {
@@ -58,7 +54,8 @@ async function displayPhotographerData() {
   photographHeader.prepend(photographerInfo);
 }
 
-// Initialise la page
+// Appel de la fonction :
+getPhotographerId;
+displayPhotographerMedias();
 displayPhotographerData();
-// Initialise le dropdown
 setupDropdown();

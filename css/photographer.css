@@ -212,3 +212,64 @@ form input {
     transform: translateX(-50%);
     border-radius: 0
 }
+
+/**** Medias */
+#photographer-all-medias-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: 45px 100px;
+
+}
+
+.media-card {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+img.media-content {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 5px;
+}
+
+video.media-content {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+
+    border-radius: 5px;
+}
+
+
+
+p.media-title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 400;
+
+}
+
+span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.heart-icon {
+    cursor: pointer;
+    width: 21px;
+    height: 24px;
+}
