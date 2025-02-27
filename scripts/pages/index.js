@@ -1,5 +1,5 @@
-import {getPhotographers} from "../utils/getPhotographers.js";
-import {photographerTemplate} from "../templates/photographer.js";
+import {getPhotographers} from "../api/getPhotographers.js";
+import {photographerTemplate} from "../templates/index.js";
 
 // Fonction pour afficher les données des photographes
 async function displayData(photographers) {
