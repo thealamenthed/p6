@@ -21,6 +21,19 @@ export async function displayPhotographerMedias() {
   // Crée et ajoute chaque média dans le conteneur
   photographerMedia.forEach((mediaItem) => {
     const mediaElement = photographerMedias(mediaItem).createMediaElement();
+
+    // ******* Ajout d'accessibilité **
+    mediaElement.setAttribute("tabindex", "0"); // Rendre focusable au clavier
+    mediaElement.setAttribute("role", "button"); // Indiquer que c'est interactif
+    mediaElement.setAttribute("aria-label", "Ouvrir le média en grand"); // Aide les lecteurs d'écran
+
+    // **Gestion de l'ouverture via "Enter"**
+    mediaElement.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        mediaElement.click(); // Simule un clic
+      }
+    });
+
     mediaContainer.appendChild(mediaElement);
   });
 }

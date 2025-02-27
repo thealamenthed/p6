@@ -54,8 +54,36 @@ async function displayPhotographerData() {
   photographHeader.prepend(photographerInfo);
 }
 
-// Appel de la fonction :
-getPhotographerId;
-displayPhotographerMedias();
-displayPhotographerData();
-setupDropdown();
+function setupLightbox() {
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const closeBtn = document.querySelector(".close");
+  const mediaElements = document.querySelectorAll(".media-content");
+
+  mediaElements.forEach((media) => {
+    media.addEventListener("click", () => {
+      lightbox.style.display = "flex"; // Affiche la lightbox
+      lightboxImg.src = media.src;
+    });
+  });
+
+  closeBtn.addEventListener("click", () => {
+    lightbox.style.display = "none"; // Ferme la lightbox
+  });
+
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      lightbox.style.display = "none"; // Ferme aussi en cliquant en dehors de l'image
+    }
+  });
+}
+
+// Attendre l'affichage des médias avant d'activer la lightbox
+async function init() {
+  await displayPhotographerData();
+  await displayPhotographerMedias();
+  setupDropdown();
+  setupLightbox(); // Maintenant, les images existent bien
+}
+
+init();

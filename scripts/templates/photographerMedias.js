@@ -1,15 +1,11 @@
-console.log("photographerMedias.js est bien chargé !");
-
 export function photographerMedias(mediaData) {
   const {id, photographerId, title, image, video, likes, date, price} =
     mediaData;
-  console.log("Appel de photographerMedias avec :", photographerId);
 
   // Détermine le chemin du fichier
   const mediaPath = image
     ? `/assets/photographers/${photographerId}/${image}`
     : `/assets/photographers/${photographerId}/${video}`;
-  console.log(mediaPath);
 
   // Fonction pour créer un élément média (image ou vidéo)
   function createMediaElement() {
@@ -54,8 +50,6 @@ export function photographerMedias(mediaData) {
 
     return mediaElement;
   }
-  console.log("test mediapath");
-  console.log("Chemin du média généré :", mediaPath);
 
   return {
     id,

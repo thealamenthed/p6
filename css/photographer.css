@@ -9,13 +9,10 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-
 }
 
 .photographer-info {
     order: 1;
-
-
 }
 
 .contact_button {
@@ -118,7 +115,6 @@ form input {
 }
 
 /****** Dropdown */
-
 .dropdown-section {
     margin: 10px 100px;
     display: flex;
@@ -127,19 +123,15 @@ form input {
     position: relative;
 }
 
-/* Styles généraux */
 .dropdown {
     position: relative;
-
 }
 
-/* Label */
 .dropdown-label {
     font-size: 18px;
     font-weight: 700;
 }
 
-/* Bouton déclencheur */
 .dropdown-trigger {
     display: flex;
     align-items: center;
@@ -160,17 +152,13 @@ form input {
     border-radius: 5px 5px 0 0;
 }
 
-
-/* Icône */
 .dropdown-icon {
     margin-left: 8px;
 }
 
-/* Liste cachée par défaut */
 .dropdown-list {
     position: absolute;
     top: 100%;
-    /* Juste en dessous du bouton */
     left: 0;
     width: 100%;
     border: none;
@@ -188,17 +176,13 @@ form input {
     padding: 12px;
     cursor: pointer;
     font-weight: bold;
-
 }
 
 /* Style pour l'élément actif dans le menu */
 .dropdown-item.active {
     background-color: #8e3f3f;
-    /* Une couleur d'arrière-plan douce pour l'élément actif */
     outline: 2px solid #0056b3;
-    /* Bordure bleue pour le focus */
     outline-offset: -2px;
-    /* Décalage de la bordure */
 }
 
 /* Séparateur entre options */
@@ -227,8 +211,6 @@ form input {
     width: 100%;
     display: flex;
     flex-direction: column;
-
-
 }
 
 img.media-content {
@@ -236,7 +218,7 @@ img.media-content {
     height: 300px;
     object-fit: cover;
     object-position: center;
-
+    cursor: pointer;
     border-radius: 5px;
 }
 
@@ -248,8 +230,6 @@ video.media-content {
     border-radius: 5px;
 }
 
-
-
 p.media-title {
     display: flex;
     justify-content: space-between;
@@ -258,18 +238,62 @@ p.media-title {
     color: #901C1C;
     font-size: 24px;
     font-weight: 400;
-
 }
 
 span {
     display: flex;
     align-items: center;
     gap: 5px;
-
 }
 
 .heart-icon {
     cursor: pointer;
     width: 21px;
     height: 24px;
+}
+
+/**** Encart qui affiche le total de likes et le tarif journalier */
+#about-photographer-likes-price-container {
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+    width: 375px;
+    height: 55px;
+    background-color: #DB8876;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/**** lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+}
+
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
 }
