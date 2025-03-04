@@ -240,6 +240,19 @@ p.media-title {
     font-weight: 400;
 }
 
+.media-info {
+    display: flex;
+}
+
+.like-count {
+    color: #901C1C;
+    font-size: 24px;
+}
+
+.heart-icon.liked {
+    filter: invert(31%) sepia(94%) saturate(748%) hue-rotate(330deg);
+}
+
 span {
     display: flex;
     align-items: center;

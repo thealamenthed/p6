@@ -12,11 +12,10 @@ export async function displayPhotographerMedias() {
     (item) => item.photographerId == photographerId
   );
 
-  // Sélectionne le conteneur des médias
   const mediaContainer = document.getElementById(
     "photographer-all-medias-container"
   );
-  mediaContainer.innerHTML = ""; // Efface le contenu existant pour éviter les doublonsmedias
+  mediaContainer.innerHTML = ""; // évite les doublonsmedias
 
   // Crée et ajoute chaque média dans le conteneur
   photographerMedia.forEach((mediaItem) => {
@@ -24,7 +23,7 @@ export async function displayPhotographerMedias() {
 
     // ******* Ajout d'accessibilité **
     mediaElement.setAttribute("tabindex", "0"); // Rendre focusable au clavier
-    mediaElement.setAttribute("role", "button"); // Indiquer que c'est interactif
+    mediaElement.setAttribute("role", "button"); // Indique que c'est interactif
     mediaElement.setAttribute("aria-label", "Ouvrir le média en grand"); // Aide les lecteurs d'écran
 
     // **Gestion de l'ouverture via "Enter"**

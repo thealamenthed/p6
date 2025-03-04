@@ -12,18 +12,16 @@ export function photographerMedias(mediaData) {
     const mediaElement = document.createElement("article");
     mediaElement.classList.add("media-card");
 
-    // Vérifie si c'est une image ou une vidéo
     let media;
     if (image) {
       media = document.createElement("img");
-      media.setAttribute("src", mediaPath);
-      media.setAttribute("alt", title);
+      media.src = mediaPath;
+      media.alt = title;
     } else if (video) {
       media = document.createElement("video");
-      media.setAttribute("src", mediaPath);
-      media.setAttribute("controls", "true");
+      media.src = mediaPath;
+      media.controls = true;
     }
-
     media.classList.add("media-content");
 
     const infoContainer = document.createElement("div");
@@ -33,20 +31,40 @@ export function photographerMedias(mediaData) {
     titleElement.textContent = title;
     titleElement.classList.add("media-title");
 
+    const likeContainer = document.createElement("span");
+    likeContainer.classList.add("like-container");
+
     const likeElement = document.createElement("span");
-    likeElement.textContent = `${likes} `;
+    likeElement.textContent = likes;
+    likeElement.classList.add("like-count");
 
     const heartIcon = document.createElement("img");
     heartIcon.src = "/assets/icons/heart.svg";
     heartIcon.alt = "Like";
     heartIcon.classList.add("heart-icon");
 
-    likeElement.appendChild(heartIcon);
+    // Ajout de l'interaction "Like"
+    heartIcon.addEventListener("click", () => {
+      let currentLikes = parseInt(likeElement.textContent, 10); //garantit qu'on obtient bien un nombre entier en base 10
+
+      if (!heartIcon.classList.contains("liked")) {
+        likeElement.textContent = currentLikes + 1;
+        heartIcon.classList.add("liked"); // Ajoute une classe pour identifier le like actif
+      } else {
+        likeElement.textContent = currentLikes - 1;
+        heartIcon.classList.remove("liked"); // Supprime la classe pour désactiver le like
+      }
+    });
+
+    // Ajout des éléments au DOM
+    likeContainer.appendChild(likeElement);
+    likeContainer.appendChild(heartIcon);
+
+    infoContainer.appendChild(titleElement);
+    infoContainer.appendChild(likeContainer);
 
     mediaElement.appendChild(media);
-
     mediaElement.appendChild(infoContainer);
-    infoContainer.appendChild(titleElement).appendChild(likeElement);
 
     return mediaElement;
   }
