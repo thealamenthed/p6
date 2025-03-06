@@ -1,5 +1,6 @@
 import {getPhotographerMedias} from "../api/getPhotographerMedias.js";
 import {getPhotographerId} from "../utils/getPhotographerId.js";
+import {updateTotalLikes} from "../utils/updateTotalLikes.js";
 
 const totalLikes = async () => {
   const {media} = await getPhotographerMedias();
@@ -19,8 +20,16 @@ const totalLikes = async () => {
   return total;
 };
 
-export const displayTotalLikes = async () => {
-  let result = await totalLikes();
+// export const displayTotalLikes = async () => {
+//   let result = await totalLikes();
 
-  console.log("------" + result);
+//   let displayElementTotal = document.querySelector(".total-likes");
+
+//   displayElementTotal.innerHTML = result;
+
+//   console.log("voici le total de likes : " + result);
+// };
+
+export const displayTotalLikes = () => {
+  updateTotalLikes(); // Met à jour le total au chargement
 };

@@ -38,13 +38,13 @@ const displayPhotographerData = async () => {
   const taglineElement = document.createElement("p");
   taglineElement.textContent = photographer.tagline;
 
-  const priceElement = document.createElement("p");
-  // priceElement.textContent = `${photographer.price}€ / jour`;
-
   const imgElement = document.createElement("img");
   imgElement.setAttribute("src", photographerModel.picture);
   imgElement.setAttribute("alt", `Portrait de ${photographer.name}`);
   imgElement.classList.add("photographer-img");
+
+  const priceElement = document.querySelector(".price");
+  priceElement.textContent = `${photographer.price}€ / jour`;
 
   // Ajout des éléments dans le header
   photographerInfo.appendChild(nameElement);

@@ -249,10 +249,6 @@ p.media-title {
     font-size: 24px;
 }
 
-.heart-icon.liked {
-    filter: invert(31%) sepia(94%) saturate(748%) hue-rotate(330deg);
-}
-
 span {
     display: flex;
     align-items: center;
@@ -263,6 +259,10 @@ span {
     cursor: pointer;
     width: 21px;
     height: 24px;
+}
+
+.heart-icon.liked {
+    filter: invert(31%) sepia(94%) saturate(748%) hue-rotate(330deg);
 }
 
 /**** Encart qui affiche le total de likes et le tarif journalier */
@@ -278,6 +278,26 @@ span {
     justify-content: center;
     border-radius: 5px 5px 0 0;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+p.total-likes {
+    color: #000;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.heart-icon-total-likes {
+    font-size: 24px;
+    margin-right: 155px;
+    margin-left: 8px;
+
+}
+
+.price {
+    color: #000;
+    font-size: 24px;
+    font-weight: 500;
+
 }
 
 /**** lightbox */
