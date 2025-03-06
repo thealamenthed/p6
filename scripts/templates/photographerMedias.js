@@ -1,6 +1,8 @@
-export function photographerMedias(mediaData) {
+export const photographerMedias = (mediaData) => {
   const {id, photographerId, title, image, video, likes, date, price} =
     mediaData;
+
+  console.log(mediaData);
 
   // Détermine le chemin du fichier
   const mediaPath = image
@@ -8,7 +10,7 @@ export function photographerMedias(mediaData) {
     : `/assets/photographers/${photographerId}/${video}`;
 
   // Fonction pour créer un élément média (image ou vidéo)
-  function createMediaElement() {
+  const createMediaElement = () => {
     const mediaElement = document.createElement("article");
     mediaElement.classList.add("media-card");
 
@@ -67,7 +69,7 @@ export function photographerMedias(mediaData) {
     mediaElement.appendChild(infoContainer);
 
     return mediaElement;
-  }
+  };
 
   return {
     id,
@@ -79,4 +81,4 @@ export function photographerMedias(mediaData) {
     price,
     createMediaElement,
   };
-}
+};

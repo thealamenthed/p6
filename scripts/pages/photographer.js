@@ -1,11 +1,13 @@
 import {photographerTemplate} from "../templates/index.js";
 import {getPhotographers} from "../api/getPhotographers.js";
+import {getPhotographerMedias} from "../api/getPhotographerMedias.js";
 import {setupDropdown} from "../utils/setupDropdown.js";
+import {displayTotalLikes} from "../utils/totalLikes.js";
 import {getPhotographerId} from "../utils/getPhotographerId.js";
 import {displayPhotographerMedias} from "../utils/displayPhotographerMedias.js";
 
 // Affiche les infos du photographe sur la page
-async function displayPhotographerData() {
+const displayPhotographerData = async () => {
   const {photographers} = await getPhotographers(); // Récupère les données
   const photographerId = getPhotographerId(); // Récupère l'ID ds l'URL
 
@@ -52,9 +54,9 @@ async function displayPhotographerData() {
 
   photographHeader.prepend(imgElement);
   photographHeader.prepend(photographerInfo);
-}
+};
 
-function setupLightbox() {
+const setupLightbox = () => {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
   const closeBtn = document.querySelector(".close");
@@ -76,14 +78,16 @@ function setupLightbox() {
       lightbox.style.display = "none"; // Ferme aussi en cliquant en dehors de l'image
     }
   });
-}
+};
 
 // Attendre l'affichage des médias avant d'activer la lightbox
-async function init() {
+const init = async () => {
   await displayPhotographerData();
   await displayPhotographerMedias();
   setupDropdown();
   setupLightbox(); // Maintenant, les images existent bien
-}
+
+  displayTotalLikes();
+};
 
 init();

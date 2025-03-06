@@ -1,5 +1,5 @@
 // Fonction pour récupérer les médias
-export async function getPhotographerMedias() {
+export const getPhotographerMedias = async () => {
   try {
     // Attendre la réponse de la requête fetch
     const response = await fetch("/data/photographers.json");
@@ -17,4 +17,4 @@ export async function getPhotographerMedias() {
       media: [], // Retourne un tableau vide en cas d'erreur
     };
   }
-}
+};

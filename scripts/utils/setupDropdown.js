@@ -1,4 +1,4 @@
-export function setupDropdown() {
+export const setupDropdown = () => {
   const button = document.getElementById("dropdown-btn");
   const menu = document.getElementById("dropdown-menu");
   const options = document.querySelectorAll(".dropdown-item");
@@ -91,4 +91,4 @@ export function setupDropdown() {
       }
     }
   });
-}
+};

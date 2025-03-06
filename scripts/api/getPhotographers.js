@@ -1,5 +1,5 @@
 // Fonction pour récupérer les photographes
-export async function getPhotographers() {
+export const getPhotographers = async () => {
   try {
     // Attendre la réponse de la requête fetch
     const response = await fetch("/data/photographers.json");
@@ -16,4 +16,4 @@ export async function getPhotographers() {
       photographers: [], // Retourne un tableau vide en cas d'erreur
     };
   }
-}
+};

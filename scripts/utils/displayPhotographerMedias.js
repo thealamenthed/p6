@@ -3,7 +3,7 @@ import {photographerMedias} from "../templates/photographerMedias.js";
 import {getPhotographerId} from "../utils/getPhotographerId.js";
 
 // Fonction pour afficher les médias du photographe
-export async function displayPhotographerMedias() {
+export const displayPhotographerMedias = async () => {
   const {media} = await getPhotographerMedias(); // Récupère les médias du photographe
   const photographerId = getPhotographerId(); // Récupère l'ID du photographe
 
@@ -35,4 +35,4 @@ export async function displayPhotographerMedias() {
 
     mediaContainer.appendChild(mediaElement);
   });
-}
+};
