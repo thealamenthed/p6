@@ -2,7 +2,7 @@ import {getPhotographerMedias} from "../api/getPhotographerMedias.js";
 import {photographerMedias} from "../templates/photographerMedias.js";
 import {getPhotographerId} from "../utils/getPhotographerId.js";
 
-// Fonction pour afficher les médias du photographe
+// Affiche les médias du photographe
 export const displayPhotographerMedias = async () => {
   const {media} = await getPhotographerMedias(); // Récupère les médias du photographe
   const photographerId = getPhotographerId(); // Récupère l'ID du photographe

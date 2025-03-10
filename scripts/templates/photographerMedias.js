@@ -18,11 +18,15 @@ export const photographerMedias = (mediaData) => {
       media.src = mediaPath;
       media.alt = title;
       media.setAttribute("data-title", title);
+      media.setAttribute("data-likes", likes);
+      media.setAttribute("data-date", date); // On ajoute la date pour le tri
     } else if (video) {
       media = document.createElement("video");
       media.src = mediaPath;
       media.controls = true;
       media.setAttribute("data-title", title);
+      media.setAttribute("data-likes", likes);
+      media.setAttribute("data-date", date); // On ajoute la date pour le tri
     }
     media.classList.add("media-content");
 
