@@ -1,6 +1,6 @@
 export const setupLightbox = () => {
   const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
+  const lightboxMediaContainer = document.getElementById("lightbox-media"); // Le conteneur pour l'image/vidéo
   const lightboxTitle = document.querySelector(".lightbox-title");
   const closeBtn = document.querySelector(".close");
   const prevBtn = document.querySelector(".prev");
@@ -10,13 +10,35 @@ export const setupLightbox = () => {
   const mediaData = Array.from(mediaElements).map((media) => ({
     src: media.src,
     title: media.getAttribute("data-title") || "Sans titre",
+    type: media.tagName.toLowerCase(), // On ajoute le type du média (img ou video)
   }));
 
   let currentIndex = 0;
 
   const showLightbox = (index) => {
-    lightboxImg.src = mediaData[index].src;
-    lightboxTitle.textContent = mediaData[index].title;
+    const currentMedia = mediaData[index];
+
+    // Si le média est une image
+    if (currentMedia.type === "img") {
+      // Créer une balise image dans le conteneur lightbox
+      const imageElement = document.createElement("img");
+      imageElement.src = currentMedia.src;
+      imageElement.alt = currentMedia.title;
+      imageElement.setAttribute("aria-label", currentMedia.title);
+      lightboxMediaContainer.innerHTML = ""; // Vider le conteneur
+      lightboxMediaContainer.appendChild(imageElement); // Ajouter l'image
+    }
+    // Si le média est une vidéo
+    else if (currentMedia.type === "video") {
+      const videoElement = document.createElement("video");
+      videoElement.src = currentMedia.src;
+      videoElement.controls = true;
+      videoElement.setAttribute("aria-label", currentMedia.title);
+      lightboxMediaContainer.innerHTML = ""; // Vider le conteneur
+      lightboxMediaContainer.appendChild(videoElement); // Ajouter la vidéo
+    }
+
+    lightboxTitle.textContent = currentMedia.title;
     lightbox.style.display = "flex";
     lightbox.setAttribute("aria-hidden", "false");
     lightbox.focus();
@@ -40,6 +62,9 @@ export const setupLightbox = () => {
   closeBtn.addEventListener("click", () => {
     lightbox.style.display = "none";
     lightbox.setAttribute("aria-hidden", "true");
+
+    // Supprimer l'élément média (image ou vidéo) lorsque la lightbox se ferme
+    lightboxMediaContainer.innerHTML = "";
   });
 
   lightbox.addEventListener("click", (e) => {

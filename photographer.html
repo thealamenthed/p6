@@ -119,13 +119,15 @@
     <!-- Lightbox Modal -->
     <div class="lightbox-content">
       <div id="lightbox" class="lightbox">
-        <button class="close close-lighbox"></button>
-        <button class="prev"></button>
+        <button
+          class="close close-lighbox"
+          aria-label="Fermer la lightbox"></button>
+        <button class="prev" aria-label="Média précédent"></button>
         <div class="lightbox-image-container">
-          <img class="lightbox-content" id="lightbox-img" />
+          <div id="lightbox-media"></div>
           <p class="lightbox-title"></p>
         </div>
-        <button class="next"></button>
+        <button class="next" aria-label="Média suivant"></button>
       </div>
     </div>
 
