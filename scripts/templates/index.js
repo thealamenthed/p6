@@ -1,15 +1,15 @@
-export function photographerTemplate(data) {
+export const photographerTemplate = (data) => {
   const {name, id, portrait, city, country, tagline, price} = data;
 
   const picture = `/assets/photographers/photographers_Id_photos/${portrait}`;
 
-  function photographerId(event) {
+  const photographerId = (event) => {
     event.preventDefault(); // Empêche le comportement par défaut du lien
     // Redirige vers la page photographer.html en passant l'ID comme paramètre
     window.location.href = `photographer.html?id=${id}`;
-  }
+  };
 
-  function getUserCardDOM() {
+  const getUserCardDOM = () => {
     const article = document.createElement("article");
     article.setAttribute("role", "article");
     article.setAttribute("aria-labelledby", `photographer-${id}-title`);
@@ -60,7 +60,7 @@ export function photographerTemplate(data) {
     article.appendChild(prix);
 
     return article;
-  }
+  };
 
   return {name, picture, city, country, tagline, price, getUserCardDOM};
-}
+};

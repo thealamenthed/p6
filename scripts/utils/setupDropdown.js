@@ -1,4 +1,4 @@
-export function setupDropdown() {
+export const setupDropdown = () => {
   const button = document.getElementById("dropdown-btn");
   const menu = document.getElementById("dropdown-menu");
   const options = document.querySelectorAll(".dropdown-item");
@@ -14,7 +14,8 @@ export function setupDropdown() {
   });
 
   // Ouvrir/fermer le menu
-  button.addEventListener("click", function () {
+  button.addEventListener("click", function (event) {
+    event.stopPropagation(); // Empêche la propagation pour éviter de fermer immédiatement
     const expanded = button.getAttribute("aria-expanded") === "true";
 
     arrow.style.transform = expanded ? "rotate(0deg)" : "rotate(180deg)";
@@ -22,9 +23,11 @@ export function setupDropdown() {
     menu.style.display = expanded ? "none" : "block";
   });
 
-  // Maj le bouton avec l'option sélectionnée
+  // Mise à jour du bouton avec l'option sélectionnée
   options.forEach((option) => {
-    option.addEventListener("click", function () {
+    option.addEventListener("click", function (event) {
+      event.stopPropagation(); // Empêche la propagation du clic
+
       // Afficher toutes les options avant de changer l'option
       options.forEach((o) => (o.style.display = "block"));
       selectedOption.textContent = option.textContent;
@@ -33,6 +36,13 @@ export function setupDropdown() {
       menu.style.display = "none";
       arrow.style.transform = "rotate(0deg)";
     });
+  });
+
+  // Fermer le dropdown en cliquant en dehors
+  document.addEventListener("click", function () {
+    button.setAttribute("aria-expanded", "false");
+    menu.style.display = "none";
+    arrow.style.transform = "rotate(0deg)";
   });
 
   // Ajout de la navigation au clavier
@@ -90,5 +100,11 @@ export function setupDropdown() {
         arrow.style.transform = "rotate(0deg)";
       }
     }
+
+    if (e.key === "Escape") {
+      button.setAttribute("aria-expanded", "false");
+      menu.style.display = "none";
+      arrow.style.transform = "rotate(0deg)";
+    }
   });
-}
+};

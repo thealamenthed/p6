@@ -2,6 +2,17 @@
     display: none;
 }
 
+.close-modal {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(325deg) brightness(109%) contrast(100%);
+
+}
+
+.title-modal {
+    color: #000;
+
+}
+
+
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
@@ -9,13 +20,10 @@
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-
 }
 
 .photographer-info {
     order: 1;
-
-
 }
 
 .contact_button {
@@ -117,8 +125,17 @@ form input {
     border-radius: 5px;
 }
 
-/****** Dropdown */
+textarea {
 
+    all: unset;
+    width: 100%;
+    height: 170px;
+    border-radius: 5px;
+    resize: vertical;
+    background-color: white
+}
+
+/****** Dropdown */
 .dropdown-section {
     margin: 10px 100px;
     display: flex;
@@ -127,19 +144,15 @@ form input {
     position: relative;
 }
 
-/* Styles généraux */
 .dropdown {
     position: relative;
-
 }
 
-/* Label */
 .dropdown-label {
     font-size: 18px;
     font-weight: 700;
 }
 
-/* Bouton déclencheur */
 .dropdown-trigger {
     display: flex;
     align-items: center;
@@ -160,17 +173,13 @@ form input {
     border-radius: 5px 5px 0 0;
 }
 
-
-/* Icône */
 .dropdown-icon {
     margin-left: 8px;
 }
 
-/* Liste cachée par défaut */
 .dropdown-list {
     position: absolute;
     top: 100%;
-    /* Juste en dessous du bouton */
     left: 0;
     width: 100%;
     border: none;
@@ -188,17 +197,13 @@ form input {
     padding: 12px;
     cursor: pointer;
     font-weight: bold;
-
 }
 
 /* Style pour l'élément actif dans le menu */
 .dropdown-item.active {
     background-color: #8e3f3f;
-    /* Une couleur d'arrière-plan douce pour l'élément actif */
     outline: 2px solid #0056b3;
-    /* Bordure bleue pour le focus */
     outline-offset: -2px;
-    /* Décalage de la bordure */
 }
 
 /* Séparateur entre options */
@@ -211,4 +216,187 @@ form input {
     width: 75%;
     transform: translateX(-50%);
     border-radius: 0
+}
+
+/**** Medias */
+#photographer-all-medias-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin: 45px 100px;
+
+}
+
+.media-card {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+}
+
+img.media-content {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+video.media-content {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+
+    border-radius: 5px;
+}
+
+p.media-title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.media-info {
+    display: flex;
+}
+
+.like-count {
+    color: #901C1C;
+    font-size: 24px;
+}
+
+span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.heart-icon {
+    cursor: pointer;
+    width: 21px;
+    height: 24px;
+}
+
+.heart-icon.liked {
+    filter: invert(31%) sepia(94%) saturate(748%) hue-rotate(330deg);
+}
+
+/**** Encart qui affiche le total de likes et le tarif journalier */
+#about-photographer-likes-price-container {
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+    width: 300px;
+    height: 60px;
+    background-color: #DB8876;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+p.total-likes {
+    color: #000;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.heart-icon-total-likes {
+    font-size: 24px;
+    margin-right: 60px;
+    margin-left: 8px;
+
+}
+
+.price {
+    color: #000;
+    font-size: 24px;
+    font-weight: 500;
+
+}
+
+/**** lightbox */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(243 236 236 / 95%);
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+}
+
+.lightbox-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    position: relative;
+}
+
+#lightbox-img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+}
+
+
+.lightbox-title {
+    position: absolute;
+    bottom: -32px;
+    left: 0;
+    color: #901C1C;
+    font-size: 16px;
+    text-align: left;
+    max-width: 100%;
+    margin: 0;
+}
+
+button.close.close-lighbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background: url("/assets/icons/close.svg") no-repeat center;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    border: none;
+    filter: brightness(0) saturate(100%) invert(17%) sepia(83%) saturate(1724%) hue-rotate(343deg) brightness(98%) contrast(95%);
+    cursor: pointer;
+}
+
+.prev,
+.next {
+    background: url("/assets/icons/prev-icon.svg") no-repeat center;
+    background-size: contain;
+    width: 40px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.next {
+    background: url("/assets/icons/next-icon.svg") no-repeat center;
+    background-size: contain;
 }
