@@ -2,23 +2,23 @@ import {getPhotographerMedias} from "../api/getPhotographerMedias.js";
 import {getPhotographerId} from "../utils/getPhotographerId.js";
 import {updateTotalLikes} from "../utils/updateTotalLikes.js";
 
-const totalLikes = async () => {
-  const {media} = await getPhotographerMedias();
+// const totalLikes = async () => {
+//   const {media} = await getPhotographerMedias();
 
-  const photographerId = getPhotographerId(); // Récupère l'ID du photographe
+//   const photographerId = getPhotographerId(); // Récupère l'ID du photographe
 
-  // Filtrer les médias pour le photographe
-  const photographerMedia = media.filter(
-    (item) => item.photographerId == photographerId
-  );
+//   // Filtrer les médias pour le photographe
+//   const photographerMedia = media.filter(
+//     (item) => item.photographerId == photographerId
+//   );
 
-  let total = photographerMedia.reduce(
-    (acc, current) => acc + current.likes,
-    0
-  );
+//   let total = photographerMedia.reduce(
+//     (acc, current) => acc + current.likes,
+//     0
+//   );
 
-  return total;
-};
+//   return total;
+// };
 
 // export const displayTotalLikes = async () => {
 //   let result = await totalLikes();

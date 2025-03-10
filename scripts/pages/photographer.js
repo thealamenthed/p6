@@ -60,22 +60,64 @@ const setupLightbox = () => {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
   const closeBtn = document.querySelector(".close");
-  const mediaElements = document.querySelectorAll(".media-content");
+  const prevBtn = document.querySelector(".prev");
+  const nextBtn = document.querySelector(".next");
 
-  mediaElements.forEach((media) => {
+  // Récupère tous les médias et stocke leurs sources
+  const mediaElements = document.querySelectorAll(".media-content");
+  const mediaSources = Array.from(mediaElements).map((media) => media.src);
+
+  let currentIndex = 0; // Index de l'image actuelle
+
+  // Affiche une image dans la lightbox
+  const showLightbox = (index) => {
+    lightboxImg.src = mediaSources[index];
+    lightbox.style.display = "flex";
+    currentIndex = index;
+  };
+
+  // Affiche la lightbox au clic sur une image
+  mediaElements.forEach((media, index) => {
     media.addEventListener("click", () => {
-      lightbox.style.display = "flex"; // Affiche la lightbox
-      lightboxImg.src = media.src;
+      showLightbox(index);
     });
   });
 
-  closeBtn.addEventListener("click", () => {
-    lightbox.style.display = "none"; // Ferme la lightbox
+  // Bouton "Suivant"
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % mediaSources.length;
+    showLightbox(currentIndex);
   });
 
+  // Bouton "Précédent"
+  prevBtn.addEventListener("click", () => {
+    currentIndex =
+      (currentIndex - 1 + mediaSources.length) % mediaSources.length;
+    showLightbox(currentIndex);
+  });
+
+  // Ferme la lightbox
+  closeBtn.addEventListener("click", () => {
+    lightbox.style.display = "none";
+  });
+
+  // Ferme en cliquant en dehors de l'image
   lightbox.addEventListener("click", (e) => {
     if (e.target === lightbox) {
-      lightbox.style.display = "none"; // Ferme aussi en cliquant en dehors de l'image
+      lightbox.style.display = "none";
+    }
+  });
+
+  // Navigation avec le clavier
+  document.addEventListener("keydown", (e) => {
+    if (lightbox.style.display === "flex") {
+      if (e.key === "ArrowRight") {
+        nextBtn.click();
+      } else if (e.key === "ArrowLeft") {
+        prevBtn.click();
+      } else if (e.key === "Escape") {
+        closeBtn.click();
+      }
     }
   });
 };
@@ -86,7 +128,6 @@ const init = async () => {
   await displayPhotographerMedias();
   setupDropdown();
   setupLightbox(); // Maintenant, les images existent bien
-
   displayTotalLikes();
 };
 
