@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -11,27 +11,47 @@
   </head>
   <body>
     <header>
-      <a href="/index.html" alt="Fisheye Home page">
-        <img src="assets/images/logo.png" class="logo" />
+      <a href="/index.html">
+        <img
+          src="assets/images/logo.png"
+          class="logo"
+          alt="Fisheye Home page" />
       </a>
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">
+        <button
+          class="contact_button"
+          onclick="displayModal()"
+          aria-haspopup="dialog"
+          aria-controls="contact_modal">
           Contactez-moi
         </button>
       </div>
     </main>
     <div id="contact_modal">
       <div class="modal">
-        <header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+        <header class="close_modal">
+          <h2 class="title-modal">Contactez-moi</h2>
+
+          <img
+            src="assets/icons/close.svg"
+            onclick="closeModal()"
+            class="close-modal" />
         </header>
         <form>
           <div>
-            <label>Prénom</label>
-            <input />
+            <label for="prenom">Prénom</label>
+            <input id="prenom" type="text" name="prenom" />
+
+            <label for="nom">Nom</label>
+            <input id="nom" type="text" name="nom" />
+
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" />
+
+            <label for="message">Votre Message</label>
+            <textarea id="message" name="message"></textarea>
           </div>
           <button class="contact_button">Envoyer</button>
         </form>
@@ -97,11 +117,16 @@
     </div>
 
     <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox">
-      <button class="close close-lighbox"></button>
-      <button class="prev"></button>
-      <img class="lightbox-content" id="lightbox-img" />
-      <button class="next"></button>
+    <div class="lightbox-content">
+      <div id="lightbox" class="lightbox">
+        <button class="close close-lighbox"></button>
+        <button class="prev"></button>
+        <div class="lightbox-image-container">
+          <img class="lightbox-content" id="lightbox-img" />
+          <p class="lightbox-title"></p>
+        </div>
+        <button class="next"></button>
+      </div>
     </div>
 
     <script type="module" src="/scripts/pages/photographer.js"></script>

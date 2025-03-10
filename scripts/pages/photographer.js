@@ -59,24 +59,29 @@ const displayPhotographerData = async () => {
 const setupLightbox = () => {
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
+  const lightboxTitle = document.querySelector(".lightbox-title");
   const closeBtn = document.querySelector(".close");
   const prevBtn = document.querySelector(".prev");
   const nextBtn = document.querySelector(".next");
 
-  // Récupère tous les médias et stocke leurs sources
+  // Récupère tous les médias et stocke leurs sources + titres
   const mediaElements = document.querySelectorAll(".media-content");
-  const mediaSources = Array.from(mediaElements).map((media) => media.src);
+  const mediaData = Array.from(mediaElements).map((media) => ({
+    src: media.src,
+    title: media.getAttribute("data-title") || "Sans titre", // Utilise un attribut data-title
+  }));
 
   let currentIndex = 0; // Index de l'image actuelle
 
-  // Affiche une image dans la lightbox
+  // Affiche une image et son titre dans la lightbox
   const showLightbox = (index) => {
-    lightboxImg.src = mediaSources[index];
+    lightboxImg.src = mediaData[index].src;
+    lightboxTitle.textContent = mediaData[index].title; // Affiche le titre
     lightbox.style.display = "flex";
     currentIndex = index;
   };
 
-  // Affiche la lightbox au clic sur une image
+  // Ajoute un gestionnaire d'événements pour chaque image
   mediaElements.forEach((media, index) => {
     media.addEventListener("click", () => {
       showLightbox(index);
@@ -85,14 +90,13 @@ const setupLightbox = () => {
 
   // Bouton "Suivant"
   nextBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % mediaSources.length;
+    currentIndex = (currentIndex + 1) % mediaData.length;
     showLightbox(currentIndex);
   });
 
   // Bouton "Précédent"
   prevBtn.addEventListener("click", () => {
-    currentIndex =
-      (currentIndex - 1 + mediaSources.length) % mediaSources.length;
+    currentIndex = (currentIndex - 1 + mediaData.length) % mediaData.length;
     showLightbox(currentIndex);
   });
 

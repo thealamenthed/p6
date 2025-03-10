@@ -17,10 +17,12 @@ export const photographerMedias = (mediaData) => {
       media = document.createElement("img");
       media.src = mediaPath;
       media.alt = title;
+      media.setAttribute("data-title", title);
     } else if (video) {
       media = document.createElement("video");
       media.src = mediaPath;
       media.controls = true;
+      media.setAttribute("data-title", title);
     }
     media.classList.add("media-content");
 
