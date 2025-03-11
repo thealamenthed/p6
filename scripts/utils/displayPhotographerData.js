@@ -6,7 +6,7 @@ import {getPhotographerId} from "../utils/getPhotographerId.js";
 export const displayPhotographerData = async () => {
   const {photographers} = await getPhotographers();
   const photographerId = getPhotographerId();
-  const photographer = photographers.find((p) => p.id == photographerId);
+  const photographer = photographers.find((p) => p.id == photographerId); // Cherche dans la liste le photographe correspondant à cet ID
 
   if (!photographer) {
     console.error("Photographe non trouvé !");

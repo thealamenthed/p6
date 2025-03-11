@@ -3,14 +3,12 @@ import {photographerMedias} from "../templates/photographerMedias.js";
 import {getPhotographerId} from "../utils/getPhotographerId.js";
 
 // Affiche les médias du photographe
-export const displayPhotographerMedias = async () => {
+export const displayPhotographerMedias = async (tri = "popularité") => {
   const {media} = await getPhotographerMedias(); // Récupère les médias du photographe
   const photographerId = getPhotographerId(); // Récupère l'ID du photographe
 
-  // Filtrer les médias pour le photographe
-  const photographerMedia = media.filter(
-    (item) => item.photographerId == photographerId
-  );
+  // Filtre les médias pour chaque photographe
+  const photographerMedia = await getTypesTri(tri, photographerId, media);
 
   const mediaContainer = document.getElementById(
     "photographer-all-medias-container"
@@ -35,4 +33,21 @@ export const displayPhotographerMedias = async () => {
 
     mediaContainer.appendChild(mediaElement);
   });
+};
+
+// Action de tri sur le dropdown
+const getTypesTri = async (tri, id, medias) => {
+  if (tri === "popularité") {
+    return medias
+      .filter((media) => media.photographerId === parseInt(id))
+      .sort((a, b) => b.likes - a.likes);
+  } else if (tri === "date") {
+    return medias
+      .filter((media) => media.photographerId === parseInt(id))
+      .sort((a, b) => new Date(a.date) - new Date(b.date));
+  } else if (tri === "titre") {
+    return medias
+      .filter((media) => media.photographerId === parseInt(id))
+      .sort((a, b) => a.title.localeCompare(b.title));
+  }
 };
