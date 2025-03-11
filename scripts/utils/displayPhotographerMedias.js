@@ -1,6 +1,7 @@
 import {getPhotographerMedias} from "../api/getPhotographerMedias.js";
 import {photographerMedias} from "../templates/photographerMedias.js";
 import {getPhotographerId} from "../utils/getPhotographerId.js";
+import {setupLightbox} from "../utils/setupLightbox.js";
 
 // Affiche les médias du photographe
 export const displayPhotographerMedias = async (tri = "popularité") => {
@@ -33,6 +34,8 @@ export const displayPhotographerMedias = async (tri = "popularité") => {
 
     mediaContainer.appendChild(mediaElement);
   });
+
+  setupLightbox();
 };
 
 // Action de tri sur le dropdown

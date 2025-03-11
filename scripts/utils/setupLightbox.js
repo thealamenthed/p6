@@ -1,6 +1,6 @@
 export const setupLightbox = () => {
   const lightbox = document.getElementById("lightbox");
-  const lightboxMediaContainer = document.getElementById("lightbox-media"); // Le conteneur pour l'image/vidéo
+  const lightboxMediaContainer = document.getElementById("lightbox-media");
   const lightboxTitle = document.querySelector(".lightbox-title");
   const closeBtn = document.querySelector(".close");
   const prevBtn = document.querySelector(".prev");
@@ -13,9 +13,13 @@ export const setupLightbox = () => {
     type: media.tagName.toLowerCase(), // On ajoute le type du média (img ou video)
   }));
 
+  //console.log(mediaData);
+  //console.log(mediaElements);
+
   let currentIndex = 0;
 
   const showLightbox = (index) => {
+    console.log(mediaData);
     const currentMedia = mediaData[index];
 
     // Si le média est une image
@@ -46,6 +50,7 @@ export const setupLightbox = () => {
   };
 
   mediaElements.forEach((media, index) => {
+    console.log(media, index);
     media.addEventListener("click", () => showLightbox(index));
   });
 
@@ -84,4 +89,14 @@ export const setupLightbox = () => {
     },
     {once: true}
   );
+};
+
+const getMediaData = () => {
+  const element = document.querySelectorAll(".media-content");
+
+  return Array.from(element).map((media) => ({
+    src: media.src,
+    title: media.getAttribute("data-title") || "Sans titre",
+    type: media.tagName.toLowerCase(), // On ajoute le type du média (img ou video)
+  }));
 };
