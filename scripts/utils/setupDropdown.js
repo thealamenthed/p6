@@ -1,6 +1,4 @@
 import {displayPhotographerMedias} from "../utils/displayPhotographerMedias.js";
-import {setupLightbox} from "../utils/setupLightbox.js";
-
 export const setupDropdown = () => {
   const button = document.getElementById("dropdown-btn");
   const menu = document.getElementById("dropdown-menu");
@@ -28,6 +26,7 @@ export const setupDropdown = () => {
 
   // Mise à jour du bouton avec l'option sélectionnée
   options.forEach((option) => {
+    option.setAttribute("tabindex", "0"); // Rend chaque option focusable
     option.addEventListener("click", function (event) {
       event.stopPropagation(); // Empêche la propagation du clic
 
@@ -53,7 +52,7 @@ export const setupDropdown = () => {
     arrow.style.transform = "rotate(0deg)";
   });
 
-  // Ajout de la navigation au clavier
+  // Navigation au clavier
   button.addEventListener("keydown", function (e) {
     const visible = button.getAttribute("aria-expanded") === "true";
     const items = [...menu.querySelectorAll(".dropdown-item")];
@@ -68,7 +67,7 @@ export const setupDropdown = () => {
       menu.setAttribute("aria-activedescendant", items[currentIndex].id);
     }
 
-    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+    if (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === "Enter") {
       e.preventDefault();
 
       if (!visible) {

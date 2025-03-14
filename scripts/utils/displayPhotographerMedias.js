@@ -5,8 +5,8 @@ import {setupLightbox} from "../utils/setupLightbox.js";
 
 // Affiche les médias du photographe
 export const displayPhotographerMedias = async (tri = "popularité") => {
-  const {media} = await getPhotographerMedias(); // Récupère les médias du photographe
-  const photographerId = getPhotographerId(); // Récupère l'ID du photographe
+  const {media} = await getPhotographerMedias();
+  const photographerId = getPhotographerId();
 
   // Filtre les médias pour chaque photographe
   const photographerMedia = await getTypesTri(tri, photographerId, media);
@@ -14,21 +14,21 @@ export const displayPhotographerMedias = async (tri = "popularité") => {
   const mediaContainer = document.getElementById(
     "photographer-all-medias-container"
   );
-  mediaContainer.innerHTML = ""; // évite les doublonsmedias
+  mediaContainer.innerHTML = ""; // évite les doublons
 
-  // Crée et ajoute chaque média dans le conteneur
   photographerMedia.forEach((mediaItem) => {
+    // Utilisation de la factory pour créer le media element
     const mediaElement = photographerMedias(mediaItem).createMediaElement();
 
-    // ******* Ajout d'accessibilité **
-    mediaElement.setAttribute("tabindex", "0"); // Rendre focusable au clavier
-    mediaElement.setAttribute("role", "button"); // Indique que c'est interactif
-    mediaElement.setAttribute("aria-label", "Ouvrir le média en grand"); // Aide les lecteurs d'écran
+    // Ajout d'accessibilité
+    mediaElement.setAttribute("tabindex", "0");
+    mediaElement.setAttribute("role", "button");
+    mediaElement.setAttribute("aria-label", "Ouvrir le média en grand");
 
-    // **Gestion de l'ouverture via "Enter"**
+    // Gestion de l'ouverture via "Enter"
     mediaElement.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
-        mediaElement.click(); // Simule un clic
+        mediaElement.click();
       }
     });
 

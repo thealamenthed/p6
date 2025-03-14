@@ -5,41 +5,37 @@ export const setupLightbox = () => {
   const closeBtn = document.querySelector(".close");
   const prevBtn = document.querySelector(".prev");
   const nextBtn = document.querySelector(".next");
-  const mediaElements = document.querySelectorAll(".media-content");
+  const mediaElements = document.querySelectorAll(
+    ".media-content img, .media-content video"
+  ); // Sélectionne les images et vidéos
 
   const mediaData = Array.from(mediaElements).map((media) => ({
     src: media.src,
-    title: media.getAttribute("data-title") || "Sans titre",
-    type: media.tagName.toLowerCase(), // On ajoute le type du média (img ou video)
+    title:
+      media.closest(".media-card").querySelector(".media-title").textContent ||
+      "Sans titre", // Récupère le titre du média depuis son parent
+    type: media.tagName.toLowerCase(),
   }));
-
-  //console.log(mediaData);
-  //console.log(mediaElements);
 
   let currentIndex = 0;
 
   const showLightbox = (index) => {
-    console.log(mediaData);
     const currentMedia = mediaData[index];
 
-    // Si le média est une image
+    lightboxMediaContainer.innerHTML = ""; // Nettoie le conteneur
+
     if (currentMedia.type === "img") {
-      // Créer une balise image dans le conteneur lightbox
       const imageElement = document.createElement("img");
       imageElement.src = currentMedia.src;
       imageElement.alt = currentMedia.title;
       imageElement.setAttribute("aria-label", currentMedia.title);
-      lightboxMediaContainer.innerHTML = ""; // Vider le conteneur
-      lightboxMediaContainer.appendChild(imageElement); // Ajouter l'image
-    }
-    // Si le média est une vidéo
-    else if (currentMedia.type === "video") {
+      lightboxMediaContainer.appendChild(imageElement);
+    } else if (currentMedia.type === "video") {
       const videoElement = document.createElement("video");
       videoElement.src = currentMedia.src;
       videoElement.controls = true;
       videoElement.setAttribute("aria-label", currentMedia.title);
-      lightboxMediaContainer.innerHTML = ""; // Vider le conteneur
-      lightboxMediaContainer.appendChild(videoElement); // Ajouter la vidéo
+      lightboxMediaContainer.appendChild(videoElement);
     }
 
     lightboxTitle.textContent = currentMedia.title;
@@ -49,10 +45,21 @@ export const setupLightbox = () => {
     currentIndex = index;
   };
 
+  // Ajout du clic et du focus clavier (Enter et Espace)
   mediaElements.forEach((media, index) => {
-    console.log(media, index);
     media.addEventListener("click", () => showLightbox(index));
+
+    media.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        showLightbox(index);
+      }
+    });
   });
+
+  nextBtn.setAttribute("aria-label", "Image suivante");
+  prevBtn.setAttribute("aria-label", "Image précédente");
+  closeBtn.setAttribute("aria-label", "Fermer la lightbox");
 
   nextBtn.addEventListener("click", () => {
     currentIndex = (currentIndex + 1) % mediaData.length;
@@ -67,9 +74,7 @@ export const setupLightbox = () => {
   closeBtn.addEventListener("click", () => {
     lightbox.style.display = "none";
     lightbox.setAttribute("aria-hidden", "true");
-
-    // Supprimer l'élément média (image ou vidéo) lorsque la lightbox se ferme
-    lightboxMediaContainer.innerHTML = "";
+    lightboxMediaContainer.innerHTML = ""; // Supprime le contenu
   });
 
   lightbox.addEventListener("click", (e) => {
@@ -78,25 +83,12 @@ export const setupLightbox = () => {
     }
   });
 
-  document.addEventListener(
-    "keydown",
-    (e) => {
-      if (lightbox.style.display === "flex") {
-        if (e.key === "ArrowRight") nextBtn.click();
-        if (e.key === "ArrowLeft") prevBtn.click();
-        if (e.key === "Escape") closeBtn.click();
-      }
-    },
-    {once: true}
-  );
-};
-
-const getMediaData = () => {
-  const element = document.querySelectorAll(".media-content");
-
-  return Array.from(element).map((media) => ({
-    src: media.src,
-    title: media.getAttribute("data-title") || "Sans titre",
-    type: media.tagName.toLowerCase(), // On ajoute le type du média (img ou video)
-  }));
+  // Gestion des touches clavier pour la navigation
+  document.addEventListener("keydown", (e) => {
+    if (lightbox.style.display === "flex") {
+      if (e.key === "ArrowRight") nextBtn.click();
+      if (e.key === "ArrowLeft") prevBtn.click();
+      if (e.key === "Escape") closeBtn.click();
+    }
+  });
 };

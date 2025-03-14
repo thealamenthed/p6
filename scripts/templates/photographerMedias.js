@@ -1,3 +1,4 @@
+import {MediaFactory} from "../factories/mediasFactory.js";
 import {updateTotalLikes} from "../utils/updateTotalLikes.js";
 
 export const photographerMedias = (mediaData) => {
@@ -8,27 +9,17 @@ export const photographerMedias = (mediaData) => {
     ? `/assets/photographers/${photographerId}/${image}`
     : `/assets/photographers/${photographerId}/${video}`;
 
-  const createMediaElement = () => {
-    const mediaElement = document.createElement("article");
-    mediaElement.classList.add("media-card");
+  // Utilisation de la MediaFactory pour créer un élément média (image ou vidéo)
+  const mediaElement = MediaFactory(mediaData).createMediaElement();
 
-    let media;
-    if (image) {
-      media = document.createElement("img");
-      media.src = mediaPath;
-      media.alt = title;
-      media.setAttribute("data-title", title);
-      media.setAttribute("data-likes", likes);
-      media.setAttribute("data-date", date); // On ajoute la date pour le tri
-    } else if (video) {
-      media = document.createElement("video");
-      media.src = mediaPath;
-      media.controls = true;
-      media.setAttribute("data-title", title);
-      media.setAttribute("data-likes", likes);
-      media.setAttribute("data-date", date); // On ajoute la date pour le tri
-    }
-    media.classList.add("media-content");
+  const createMediaElement = () => {
+    const mediaContainer = document.createElement("article");
+    mediaContainer.classList.add("media-card");
+
+    const mediaContent = document.createElement("div");
+    mediaContent.classList.add("media-content");
+
+    mediaContent.appendChild(mediaElement);
 
     const infoContainer = document.createElement("div");
     infoContainer.classList.add("media-info");
@@ -43,37 +34,54 @@ export const photographerMedias = (mediaData) => {
     const likeElement = document.createElement("span");
     likeElement.textContent = likes;
     likeElement.classList.add("like-count");
+    likeElement.setAttribute("aria-live", "polite");
+
+    const heartButton = document.createElement("button");
+    heartButton.classList.add("heart-button");
+    heartButton.setAttribute("aria-label", "Ajouter un like");
+    heartButton.setAttribute("tabindex", "0");
 
     const heartIcon = document.createElement("img");
     heartIcon.src = "/assets/icons/heart-red.svg";
-    heartIcon.alt = "Like";
+    heartIcon.alt = "";
     heartIcon.classList.add("heart-icon");
 
-    // Ajout de l'interaction "Like" et mise à jour du total des likes
-    heartIcon.addEventListener("click", () => {
+    heartButton.appendChild(heartIcon);
+
+    const toggleLike = () => {
       let currentLikes = parseInt(likeElement.textContent, 10);
 
-      if (!heartIcon.classList.contains("liked")) {
+      if (!heartButton.classList.contains("liked")) {
         likeElement.textContent = currentLikes + 1;
-        heartIcon.classList.add("liked");
+        heartButton.classList.add("liked");
+        heartButton.setAttribute("aria-label", "Retirer le like");
       } else {
         likeElement.textContent = currentLikes - 1;
-        heartIcon.classList.remove("liked");
+        heartButton.classList.remove("liked");
+        heartButton.setAttribute("aria-label", "Ajouter un like");
       }
 
-      updateTotalLikes(); // Recalcule le total des likes après chaque clic
+      updateTotalLikes();
+    };
+
+    heartButton.addEventListener("click", toggleLike);
+    heartButton.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggleLike();
+      }
     });
 
     likeContainer.appendChild(likeElement);
-    likeContainer.appendChild(heartIcon);
+    likeContainer.appendChild(heartButton);
 
     infoContainer.appendChild(titleElement);
     infoContainer.appendChild(likeContainer);
 
-    mediaElement.appendChild(media);
-    mediaElement.appendChild(infoContainer);
+    mediaContainer.appendChild(mediaContent);
+    mediaContainer.appendChild(infoContainer);
 
-    return mediaElement;
+    return mediaContainer;
   };
 
   return {

@@ -32,28 +32,63 @@
     <div id="contact_modal">
       <div class="modal">
         <header class="close_modal">
-          <h2 class="title-modal">Contactez-moi</h2>
+          <h2 class="title-modal"></h2>
 
           <img
             src="assets/icons/close.svg"
             onclick="closeModal()"
             class="close-modal" />
         </header>
-        <form>
+        <form id="contact_form" novalidate>
           <div>
             <label for="prenom">Prénom</label>
-            <input id="prenom" type="text" name="prenom" />
+            <input
+              id="prenom"
+              type="text"
+              name="prenom"
+              required
+              aria-describedby="prenom-error" />
+            <span
+              id="prenom-error"
+              class="error-message"
+              aria-live="polite"></span>
 
             <label for="nom">Nom</label>
-            <input id="nom" type="text" name="nom" />
+            <input
+              id="nom"
+              type="text"
+              name="nom"
+              required
+              aria-describedby="nom-error" />
+            <span
+              id="nom-error"
+              class="error-message"
+              aria-live="polite"></span>
 
             <label for="email">Email</label>
-            <input id="email" type="email" name="email" />
+            <input
+              id="email"
+              type="email"
+              name="email"
+              required
+              aria-describedby="email-error" />
+            <span
+              id="email-error"
+              class="error-message"
+              aria-live="polite"></span>
 
             <label for="message">Votre Message</label>
-            <textarea id="message" name="message"></textarea>
+            <textarea
+              id="message"
+              name="message"
+              required
+              aria-describedby="message-error"></textarea>
+            <span
+              id="message-error"
+              class="error-message"
+              aria-live="polite"></span>
           </div>
-          <button class="contact_button">Envoyer</button>
+          <button type="submit" class="contact_button">Envoyer</button>
         </form>
       </div>
     </div>

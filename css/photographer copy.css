@@ -244,13 +244,12 @@ textarea {
     border-radius: 0
 }
 
-/**** Medias */
+/* Medias */
 #photographer-all-medias-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin: 45px 100px;
-
 }
 
 .media-card {
@@ -262,25 +261,27 @@ textarea {
 }
 
 .media-content {
+    position: relative;
     width: 100%;
     height: 300px;
-    object-fit: cover;
-    object-position: center;
-    cursor: pointer;
+    /* Garde cette taille pour l'image */
+    overflow: hidden;
     border-radius: 5px;
-}
-
-img.media-content:focus-visible {
-    box-shadow: 0 0 0 .25rem rgba(225, 83, 97, .5);
-    border-radius: 5px;
-
 }
 
 .media-content img,
 .media-content video {
     width: 100%;
-    height: 300px;
+    height: 100%;
     object-fit: cover;
+    object-position: center;
+    display: block;
+    /* Empêche l'image de causer des sauts de ligne */
+}
+
+.media-content img:focus-visible,
+.media-content video:focus-visible {
+    box-shadow: 0 0 0 .25rem rgba(225, 83, 97, .5);
     border-radius: 5px;
 }
 
@@ -318,12 +319,12 @@ span {
 .heart-button:focus-visible {
     box-shadow: 0 0 0 .25rem rgba(225, 83, 97, .5);
     border-radius: 5px;
-
 }
 
 .heart-button.liked {
     filter: invert(31%) sepia(94%) saturate(748%) hue-rotate(330deg);
 }
+
 
 /**** Encart qui affiche le total de likes et le tarif journalier */
 #about-photographer-likes-price-container {
