@@ -87,14 +87,15 @@ p {
 
 .title-modal {
     color: #000;
-
+    line-height: 1.2;
 }
 
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
     max-width: 669px;
-    height: 900px;
+    max-height: 900px;
+    height: auto;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -102,18 +103,21 @@ p {
     justify-content: space-between;
     padding: 35px;
     margin: auto;
-    overflow: hidden;
+    overflow-y: auto;
     box-shadow: rgba(149, 157, 165, 1.2) 0px 8px 24px;
 }
 
 .modal header {
     justify-content: space-between;
     width: 100%;
+    position: relative;
 }
 
 .modal header img {
     cursor: pointer;
-    margin-bottom: 95px;
+    position: absolute;
+    right: 10px;
+    bottom: 72px;
 }
 
 .modal header h2 {
@@ -135,7 +139,6 @@ form label {
 
 form div {
     width: 100%;
-    margin-bottom: 20px;
     margin-top: 45px;
 }
 

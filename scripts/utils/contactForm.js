@@ -6,18 +6,18 @@ const modal = document.getElementById("contact_modal");
 const firstInput = document.getElementById("prenom");
 
 // Affiche la modal
-const displayModal = () => {
+function displayModal() {
   modal.style.display = "block";
   firstInput.focus(); // Mettre le focus sur le premier champ
   document.addEventListener("keydown", handleKeyDown);
-};
+}
 
 // Ferme la modal
-const closeModal = () => {
+function closeModal() {
   modal.style.display = "none";
   contactBtn.focus(); // Remet le focus sur le bouton après fermeture
   document.removeEventListener("keydown", handleKeyDown);
-};
+}
 
 // Gérer la fermeture avec la touche "Escape"
 const handleKeyDown = (event) => {
