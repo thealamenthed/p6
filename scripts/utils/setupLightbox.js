@@ -41,7 +41,7 @@ export const setupLightbox = () => {
       const videoElement = document.createElement("video");
       videoElement.controls = true;
       videoElement.setAttribute("aria-label", currentMedia.title);
-      videoElement.autoplay = true;
+      videoElement.autoplay = false;
       videoElement.muted = true;
 
       const sourceElement = document.createElement("source");

@@ -134,11 +134,9 @@ form label {
 }
 
 form div {
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
+    margin-bottom: 20px;
+    margin-top: 45px;
 }
 
 form input {
@@ -147,6 +145,7 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
 
 textarea {
 
