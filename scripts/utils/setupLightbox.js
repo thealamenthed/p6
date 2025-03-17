@@ -7,22 +7,29 @@ export const setupLightbox = () => {
   const nextBtn = document.querySelector(".next");
   const mediaElements = document.querySelectorAll(
     ".media-content img, .media-content video"
-  ); // Sélectionne les images et vidéos
+  );
 
-  const mediaData = Array.from(mediaElements).map((media) => ({
-    src: media.src,
-    title:
-      media.closest(".media-card").querySelector(".media-title").textContent ||
-      "Sans titre", // Récupère le titre du média depuis son parent
-    type: media.tagName.toLowerCase(),
-  }));
+  const mediaData = Array.from(mediaElements).map((media) => {
+    let src =
+      media.tagName.toLowerCase() === "video"
+        ? media.querySelector("source")?.src // Récupère la source de la balise <source>
+        : media.src; // Récupère la source le media
+
+    return {
+      src: src || "", // Évite les valeurs indésirables dans les données si vide ou "undefined"
+      title:
+        media.closest(".media-card").querySelector(".media-title")
+          ?.textContent || "Sans titre",
+      type: media.tagName.toLowerCase(), // Détermine le type de média soit vidéo ou img
+    };
+  });
 
   let currentIndex = 0;
 
   const showLightbox = (index) => {
     const currentMedia = mediaData[index];
 
-    lightboxMediaContainer.innerHTML = ""; // Nettoie le conteneur
+    lightboxMediaContainer.innerHTML = "";
 
     if (currentMedia.type === "img") {
       const imageElement = document.createElement("img");
@@ -32,10 +39,23 @@ export const setupLightbox = () => {
       lightboxMediaContainer.appendChild(imageElement);
     } else if (currentMedia.type === "video") {
       const videoElement = document.createElement("video");
-      videoElement.src = currentMedia.src;
       videoElement.controls = true;
       videoElement.setAttribute("aria-label", currentMedia.title);
+      videoElement.autoplay = true;
+      videoElement.muted = true;
+
+      const sourceElement = document.createElement("source");
+      sourceElement.src = currentMedia.src;
+      sourceElement.type = "video/mp4"; // Ajoute un type valide
+
+      videoElement.appendChild(sourceElement);
       lightboxMediaContainer.appendChild(videoElement);
+
+      // Charge la vidéo avant de la lire
+      videoElement.load();
+      videoElement.play().catch((error) => {
+        console.error("Erreur de lecture automatique :", error);
+      });
     }
 
     lightboxTitle.textContent = currentMedia.title;
@@ -74,7 +94,7 @@ export const setupLightbox = () => {
   closeBtn.addEventListener("click", () => {
     lightbox.style.display = "none";
     lightbox.setAttribute("aria-hidden", "true");
-    lightboxMediaContainer.innerHTML = ""; // Supprime le contenu
+    lightboxMediaContainer.innerHTML = "";
   });
 
   lightbox.addEventListener("click", (e) => {

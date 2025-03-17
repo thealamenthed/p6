@@ -18,6 +18,7 @@ export const photographerMedias = (mediaData) => {
 
     const mediaContent = document.createElement("div");
     mediaContent.classList.add("media-content");
+    mediaContainer.setAttribute("role", "group");
 
     mediaContent.appendChild(mediaElement);
 
@@ -40,6 +41,7 @@ export const photographerMedias = (mediaData) => {
     heartButton.classList.add("heart-button");
     heartButton.setAttribute("aria-label", "Ajouter un like");
     heartButton.setAttribute("tabindex", "0");
+    heartButton.setAttribute("role", "button");
 
     const heartIcon = document.createElement("img");
     heartIcon.src = "/assets/icons/heart-red.svg";

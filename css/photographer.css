@@ -12,12 +12,17 @@
 }
 
 .contact_button:focus-visible {
-    box-shadow: 0 0 0 .25rem rgba(225, 83, 97, .5);
+    box-shadow: rgb(191, 223, 255) 0px 0px 2px 3px, rgb(0, 65, 217) 0px 0px 2px 4px;
+
+
+
+
 
 }
 
 .contact_button {
     order: 2;
+
 }
 
 .photographer-img {
@@ -192,7 +197,7 @@ textarea {
 }
 
 .dropdown-trigger:focus-visible {
-    box-shadow: 0 0 0 .25rem rgba(225, 83, 97, .5);
+    box-shadow: rgb(191, 223, 255) 0px 0px 2px 3px, rgb(0, 65, 217) 0px 0px 2px 4px;
 }
 
 .dropdown-icon {
@@ -261,6 +266,11 @@ textarea {
     max-width: 350px;
 }
 
+.media-card:focus-visible {
+    box-shadow: rgb(191, 223, 255) 0px 0px 2px 3px, rgb(0, 65, 217) 0px 0px 2px 4px;
+
+}
+
 .media-content {
     width: 100%;
     height: 300px;
@@ -270,9 +280,15 @@ textarea {
     border-radius: 5px;
 }
 
-img.media-content:focus-visible {
-    box-shadow: 0 0 0 .25rem rgba(225, 83, 97, .5);
-    border-radius: 5px;
+
+
+img:focus-visible {
+    box-shadow: rgb(191, 223, 255) 0px 0px 2px 3px, rgb(0, 65, 217) 0px 0px 2px 4px;
+
+}
+
+video:focus-visible {
+    box-shadow: rgb(191, 223, 255) 0px 0px 2px 3px, rgb(0, 65, 217) 0px 0px 2px 4px;
 
 }
 
@@ -316,7 +332,7 @@ span {
 }
 
 .heart-button:focus-visible {
-    box-shadow: 0 0 0 .25rem rgba(225, 83, 97, .5);
+    box-shadow: rgb(191, 223, 255) 0px 0px 2px 3px, rgb(0, 65, 217) 0px 0px 2px 4px;
     border-radius: 5px;
 
 }

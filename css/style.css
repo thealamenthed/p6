@@ -16,6 +16,11 @@ a {
 
 }
 
+a:focus-visible {
+    box-shadow: rgb(191, 223, 255) 0px 0px 2px 3px, rgb(0, 65, 217) 0px 0px 2px 4px;
+
+}
+
 
 ul,
 ol {
