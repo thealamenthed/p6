@@ -16,11 +16,26 @@ a {
 
 }
 
+a:focus-visible {
+    box-shadow: rgb(191, 223, 255) 0px 0px 2px 3px, rgb(0, 65, 217) 0px 0px 2px 4px;
+
+}
+
 
 ul,
 ol {
     list-style: none;
 }
+
+button {
+    all: unset;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 
 body {
     font-family: "DM Sans", sans-serif;

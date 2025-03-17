@@ -1,3 +1,4 @@
+import {displayPhotographerMedias} from "../utils/displayPhotographerMedias.js";
 export const setupDropdown = () => {
   const button = document.getElementById("dropdown-btn");
   const menu = document.getElementById("dropdown-menu");
@@ -5,36 +6,63 @@ export const setupDropdown = () => {
   const selectedOption = document.getElementById("selected-option");
   const arrow = document.querySelector(".dropdown-icon");
 
-  // Initialisation : cache l'option sélectionnée
-  options.forEach((option) => {
-    option.style.display =
-      option.textContent.trim() === selectedOption.textContent.trim()
-        ? "none"
-        : "block";
-  });
+  // Fonction pour sélectionner une option
+  const selectOption = (option) => {
+    selectedOption.textContent = option.textContent;
 
-  // Ouvrir/fermer le menu
+    // Afficher toutes les options avant de masquer celle sélectionnée
+    options.forEach((o) => (o.style.display = "block"));
+    option.style.display = "none"; // Masque l'option sélectionnée
+
+    // Fermer le menu
+    button.setAttribute("aria-expanded", "false");
+    menu.style.display = "none";
+    arrow.style.transform = "rotate(0deg)";
+
+    // Appliquer le tri
+    displayPhotographerMedias(option.textContent.trim().toLowerCase());
+  };
+
+  // Ouvrir/fermer le menu au clic
   button.addEventListener("click", function (event) {
-    event.stopPropagation(); // Empêche la propagation pour éviter de fermer immédiatement
+    event.stopPropagation();
     const expanded = button.getAttribute("aria-expanded") === "true";
 
     arrow.style.transform = expanded ? "rotate(0deg)" : "rotate(180deg)";
     button.setAttribute("aria-expanded", !expanded);
     menu.style.display = expanded ? "none" : "block";
+
+    // Cache l'option actuellement sélectionnée quand le menu s'ouvre
+    options.forEach((option) => {
+      option.style.display =
+        option.textContent.trim() === selectedOption.textContent.trim()
+          ? "none"
+          : "block";
+    });
   });
 
-  // Mise à jour du bouton avec l'option sélectionnée
+  // Ajout des événements pour chaque option
   options.forEach((option) => {
-    option.addEventListener("click", function (event) {
-      event.stopPropagation(); // Empêche la propagation du clic
+    option.setAttribute("tabindex", "0"); // Rend chaque option focusable
 
-      // Afficher toutes les options avant de changer l'option
-      options.forEach((o) => (o.style.display = "block"));
-      selectedOption.textContent = option.textContent;
-      option.style.display = "none"; // Cacher l'option sélectionnée
-      button.setAttribute("aria-expanded", "false");
-      menu.style.display = "none";
-      arrow.style.transform = "rotate(0deg)";
+    // Sélection au clic
+    option.addEventListener("click", function (event) {
+      event.stopPropagation();
+      selectOption(option);
+    });
+
+    // Sélection au clavier
+    option.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        selectOption(option);
+      }
+    });
+
+    // Ajoute la classe "active" quand une option est focusée
+    option.addEventListener("focus", function () {
+      options.forEach((o) => o.classList.remove("active"));
+      option.classList.add("active");
     });
   });
 
@@ -45,7 +73,7 @@ export const setupDropdown = () => {
     arrow.style.transform = "rotate(0deg)";
   });
 
-  // Ajout de la navigation au clavier
+  // Navigation au clavier (flèches + échap)
   button.addEventListener("keydown", function (e) {
     const visible = button.getAttribute("aria-expanded") === "true";
     const items = [...menu.querySelectorAll(".dropdown-item")];
@@ -53,52 +81,24 @@ export const setupDropdown = () => {
       item.classList.contains("active")
     );
 
-    // Si aucune option n'est active, initialiser sur le premier élément
-    if (currentIndex === -1 && visible) {
-      currentIndex = 0;
-      items[currentIndex].classList.add("active");
-      menu.setAttribute("aria-activedescendant", items[currentIndex].id);
+    if (!visible) {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        button.click(); // Ouvre le menu
+        setTimeout(() => {
+          items[0].focus(); // Met le focus sur la première option
+        }, 10);
+      }
+      return;
     }
 
     if (e.key === "ArrowDown" || e.key === "ArrowUp") {
       e.preventDefault();
+      currentIndex =
+        e.key === "ArrowDown"
+          ? (currentIndex + 1) % items.length
+          : (currentIndex - 1 + items.length) % items.length;
 
-      if (!visible) {
-        button.click(); // Ouvre le menu si ce n'est pas déjà fait
-        setTimeout(() => {
-          items[0].classList.add("active"); // Assure que le premier élément est actif
-          menu.setAttribute("aria-activedescendant", items[0].id);
-        }, 10);
-        return;
-      }
-
-      if (e.key === "ArrowDown") {
-        currentIndex = (currentIndex + 1) % items.length;
-      } else if (e.key === "ArrowUp") {
-        currentIndex = (currentIndex - 1 + items.length) % items.length;
-      }
-
-      items.forEach((item) => item.classList.remove("active"));
-      items[currentIndex].classList.add("active");
-      menu.setAttribute("aria-activedescendant", items[currentIndex].id);
-    }
-
-    if (e.key === "Enter") {
-      e.preventDefault();
-      const activeItem = menu.querySelector(".dropdown-item.active");
-      if (activeItem) {
-        // Maj le texte du bouton avec l'option sélectionnée
-        selectedOption.textContent = activeItem.textContent;
-
-        // Cache l'option sélectionnée du menu
-        options.forEach((o) => (o.style.display = "block"));
-        activeItem.style.display = "none"; // Cacher l'option sélectionnée
-
-        // Ferme le menu
-        button.setAttribute("aria-expanded", "false");
-        menu.style.display = "none";
-        arrow.style.transform = "rotate(0deg)";
-      }
+      items[currentIndex].focus();
     }
 
     if (e.key === "Escape") {

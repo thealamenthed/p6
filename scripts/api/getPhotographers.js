@@ -1,19 +1,18 @@
-// Fonction pour récupérer les photographes
-export const getPhotographers = async () => {
-  try {
-    // Attendre la réponse de la requête fetch
-    const response = await fetch("/data/photographers.json");
+let photographersCache = null;
 
-    // Attendre la réponse en JSON
+export const getPhotographers = async () => {
+  if (photographersCache) return {photographers: photographersCache};
+
+  try {
+    const response = await fetch("../../data/photographers.json");
+    if (!response.ok)
+      throw new Error("Erreur lors du chargement des photographes");
+
     const data = await response.json();
-    // Retourne le tableau des photographes
-    return {
-      photographers: data.photographers,
-    };
+    photographersCache = data.photographers; // Mise en cache
+    return {photographers: photographersCache};
   } catch (error) {
-    console.error("Erreur lors de la récupération des photographes :", error);
-    return {
-      photographers: [], // Retourne un tableau vide en cas d'erreur
-    };
+    console.error(error);
+    return {photographers: []};
   }
 };
