@@ -4,7 +4,7 @@ export const getPhotographers = async () => {
   if (photographersCache) return {photographers: photographersCache};
 
   try {
-    const response = await fetch("./data/photographers.json");
+    const response = await fetch("data/photographers.json");
     if (!response.ok)
       throw new Error("Erreur lors du chargement des photographes");
 
