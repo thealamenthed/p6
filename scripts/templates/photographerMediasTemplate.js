@@ -44,7 +44,7 @@ export const photographerMedias = (mediasData) => {
     heartButton.setAttribute("role", "button");
 
     const heartIcon = document.createElement("img");
-    heartIcon.src = "/assets/icons/heart-red.svg";
+    heartIcon.src = "./assets/icons/heart-red.svg";
     heartIcon.alt = "";
     heartIcon.classList.add("heart-icon");
 
