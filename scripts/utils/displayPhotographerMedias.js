@@ -1,5 +1,5 @@
 import {getPhotographerMedias} from "../api/getPhotographerMedias.js";
-import {photographerMedias} from "../templates/photographerMedias.js";
+import {photographerMedias} from "../templates/photographerMediasTemplate.js";
 import {getPhotographerId} from "../utils/getPhotographerId.js";
 import {setupLightbox} from "../utils/setupLightbox.js";
 
@@ -34,7 +34,6 @@ export const displayPhotographerMedias = async (tri = "popularité") => {
 
     mediaContainer.appendChild(mediaElement);
   });
-
   setupLightbox();
 };
 

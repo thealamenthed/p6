@@ -1,4 +1,4 @@
-import {photographerTemplate} from "../templates/index.js";
+import {photographerTemplate} from "../templates/photographerTemplate.js";
 
 export const displayData = async (photographers) => {
   const photographersSection = document.querySelector(".photographer_section");

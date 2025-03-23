@@ -1,16 +1,16 @@
-import {MediaFactory} from "../factories/mediasFactory.js";
+import {MediaFactory} from "../factories/MediasFactory.js";
 import {updateTotalLikes} from "../utils/updateTotalLikes.js";
 
-export const photographerMedias = (mediaData) => {
+export const photographerMedias = (mediasData) => {
   const {id, photographerId, title, image, video, likes, date, price} =
-    mediaData;
+    mediasData;
 
   const mediaPath = image
     ? `/assets/photographers/${photographerId}/${image}`
     : `/assets/photographers/${photographerId}/${video}`;
 
   // Utilisation de la MediaFactory pour créer un élément média (image ou vidéo)
-  const mediaElement = MediaFactory(mediaData).createMediaElement();
+  const mediaElement = new MediaFactory(mediasData).createMediaElement();
 
   const createMediaElement = () => {
     const mediaContainer = document.createElement("article");

@@ -1,4 +1,4 @@
-import {photographerTemplate} from "../templates/index.js";
+import {photographerTemplate} from "../templates/photographerTemplate.js";
 import {getPhotographers} from "../api/getPhotographers.js";
 import {getPhotographerId} from "../utils/getPhotographerId.js";
 

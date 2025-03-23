@@ -3,12 +3,6 @@ export const photographerTemplate = (data) => {
 
   const picture = `/assets/photographers/photographers_Id_photos/${portrait}`;
 
-  const photographerId = (event) => {
-    event.preventDefault(); // Empêche le comportement par défaut du lien
-    // Redirige vers la page photographer.html en passant l'ID comme paramètre
-    window.location.href = `photographer.html?id=${id}`;
-  };
-
   const getUserCardDOM = () => {
     const article = document.createElement("article");
     article.setAttribute("role", "article");
@@ -18,7 +12,6 @@ export const photographerTemplate = (data) => {
     const linkPhotographerPage = document.createElement("a");
     linkPhotographerPage.href = `photographer.html?id=${id}`;
     linkPhotographerPage.setAttribute("title", `Voir le profil de ${name}`);
-    linkPhotographerPage.addEventListener("click", photographerId);
 
     const img = document.createElement("img");
     img.setAttribute("src", picture);

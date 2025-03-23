@@ -64,6 +64,7 @@ p {
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 15px;
 }
 
 /* Modal*/
@@ -117,7 +118,7 @@ p {
     cursor: pointer;
     position: absolute;
     right: 10px;
-    bottom: 72px;
+    bottom: 60px;
 }
 
 .modal header h2 {

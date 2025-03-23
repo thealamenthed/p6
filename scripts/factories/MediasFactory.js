@@ -1,10 +1,22 @@
-export function MediaFactory(mediaData) {
-  if (mediaData.image) {
-    return new ImageMedia(mediaData);
-  } else if (mediaData.video) {
-    return new VideoMedia(mediaData);
-  } else {
-    throw new Error("Type de média inconnu");
+// export function MediaFactory(mediaData) {
+//   if (mediaData.image) {
+//     return new ImageMedia(mediaData);
+//   } else if (mediaData.video) {
+//     return new VideoMedia(mediaData);
+//   } else {
+//     throw new Error("Type de média inconnu");
+//   }
+// }
+
+export class MediaFactory {
+  constructor(mediaData) {
+    if (mediaData.image) {
+      return new ImageMedia(mediaData);
+    } else if (mediaData.video) {
+      return new VideoMedia(mediaData);
+    } else {
+      throw new Error("Type de média inconnu");
+    }
   }
 }
 
