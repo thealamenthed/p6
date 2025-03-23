@@ -2,7 +2,7 @@
 export const getPhotographerMedias = async () => {
   try {
     // Attendre la réponse de la requête fetch
-    const response = await fetch("/data/photographers.json");
+    const response = await fetch("./data/photographers.json");
 
     // Attendre la réponse en JSON
     const data = await response.json();
