@@ -1,4 +1,4 @@
-import {photographerTemplate} from "../templates/photographerTemplate.js";
+import {photographersTemplate} from "../templates/photographersTemplate.js";
 import {getPhotographers} from "../api/getPhotographers.js";
 import {getPhotographerId} from "../utils/getPhotographerId.js";
 
@@ -16,7 +16,7 @@ export const displayPhotographerData = async () => {
     return;
   }
 
-  const photographerModel = photographerTemplate(photographer);
+  const photographerModel = photographersTemplate(photographer);
   const photographHeader = document.querySelector(".photograph-header");
 
   // Génération des éléments HTML via un fragment (meilleure perf)
