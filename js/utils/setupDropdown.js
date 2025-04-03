@@ -1,4 +1,4 @@
-import {displayPhotographerMedias} from "../utils/displayPhotographerMedias.js";
+import {displayPhotographerMedias} from "./displayPhotographerMedias.js";
 export const setupDropdown = () => {
   const button = document.getElementById("dropdown-btn");
   const menu = document.getElementById("dropdown-menu");

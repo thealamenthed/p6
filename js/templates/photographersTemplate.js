@@ -1,7 +1,7 @@
 export const photographersTemplate = (data) => {
   const {name, id, portrait, city, country, tagline, price} = data;
 
-  const picture = `/assets/photographers/photographers_Id_photos/${portrait}`;
+  const picture = `assets/images/photographers/photographers_Id_photos/${portrait}`;
 
   const getUserCardDOM = () => {
     const article = document.createElement("article");

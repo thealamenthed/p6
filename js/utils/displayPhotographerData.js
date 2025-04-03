@@ -1,6 +1,6 @@
 import {photographersTemplate} from "../templates/photographersTemplate.js";
 import {getPhotographers} from "../api/getPhotographers.js";
-import {getPhotographerId} from "../utils/getPhotographerId.js";
+import {getPhotographerId} from "./getPhotographerId.js";
 
 // Affiche les infos du photographe sur la page
 export const displayPhotographerData = async () => {

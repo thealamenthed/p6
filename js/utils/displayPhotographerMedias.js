@@ -1,7 +1,7 @@
 import {getPhotographerMedias} from "../api/getPhotographerMedias.js";
 import {photographerMedias} from "../templates/photographerMediasTemplate.js";
-import {getPhotographerId} from "../utils/getPhotographerId.js";
-import {setupLightbox} from "../utils/setupLightbox.js";
+import {getPhotographerId} from "./getPhotographerId.js";
+import {setupLightbox} from "./setupLightbox.js";
 
 // Affiche les médias du photographe
 export const displayPhotographerMedias = async (tri = "popularité") => {
