@@ -6,8 +6,8 @@ export const photographerMedias = (mediasData) => {
     mediasData;
 
   const mediaPath = image
-    ? `assets/images/photographers/${photographerId}/${image}`
-    : `assets/images/photographers/${photographerId}/${video}`;
+    ? `assets/medias/photographers/${photographerId}/${image}`
+    : `assets/medias/photographers/${photographerId}/${video}`;
 
   // Utilisation de la MediaFactory pour créer un élément média (image ou vidéo)
   const mediaElement = new MediaFactory(mediasData).createMediaElement();

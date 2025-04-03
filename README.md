@@ -57,7 +57,7 @@ Le site doit être entièrement navigable au clavier et accessible aux utilisate
 ├── data/
 │   ├── photographers.json   # Fichier JSON contenant les données des photographes
 ├── assets/
-│   ├── images/              # Photos des photographes
+│   ├── medias/              # Photos et vidéos des photographes
 │   ├── icons/               # Icônes et éléments graphiques
 
 ```
