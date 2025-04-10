@@ -32,7 +32,7 @@ class VideoMedia {
 
   createMediaElement() {
     const video = document.createElement("video");
-    video.controls = true;
+    video.controls = false;
     video.setAttribute("tabindex", "0");
     video.setAttribute("aria-label", `Vidéo : ${this.data.title}`);
     video.setAttribute("title", `Vidéo : ${this.data.title}`);
